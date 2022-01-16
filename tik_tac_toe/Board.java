@@ -13,7 +13,6 @@ public class Board {
 
     private int[][] board;
 
-    private
     Board(int order){
         this.order = order;
         this.board = new int[order][order];
@@ -56,7 +55,9 @@ public class Board {
      * @param col
      * @return 0 if successfully made the move for a given player , for a specific location , 1 otherwise
      */
-    int makeMove(int player , int row , int col){
-        return -1;
+     int makeMove(int player , int row , int col){
+        if (this.board[row][col] != 0)return 1;
+        this.board[row][col] = player;
+        return 0;
     }
 }
