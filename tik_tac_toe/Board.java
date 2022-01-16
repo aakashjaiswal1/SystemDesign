@@ -20,7 +20,7 @@ public class Board {
 
     /**
      * Returns a winner based on current status of the game.
-     * @return +1 if 1st player won , -1 if second Player won and -1 otherwise
+     * @return +1 if 1st player won , -1 if second Player won and 0 otherwise
      */
     int getWinner(){
         int[] row = new int[this.order];
@@ -33,9 +33,9 @@ public class Board {
                 row[i]+=item;
                 col[j]+=item;
                 if (i == j){
-                    diag++;
+                    diag+=item;
                 }else if(i+j == this.order){
-                    rev_diag++;
+                    rev_diag+=item;
                 }
             }
         }
@@ -56,6 +56,10 @@ public class Board {
      * @return 0 if successfully made the move for a given player , for a specific location , 1 otherwise
      */
      int makeMove(int player , int row , int col){
+         if(getWinner() != 0){
+             System.out.println("Winner already decide");
+             return 1;
+         }
         if (this.board[row][col] != 0)return 1;
         this.board[row][col] = player;
         return 0;
